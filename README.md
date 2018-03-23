@@ -1,3 +1,3 @@
 # PassthruService
 
-Simple passthru service with Ballerina new syntaxes (V 0.964.1)
+Simple passthru service with Ballerina newly released version (Ballerina 0.970.0-alpha0)
