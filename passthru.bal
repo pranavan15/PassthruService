@@ -19,7 +19,7 @@ endpoint http:ClientEndpoint backendClientEP {
 @http:ServiceConfig {
     basePath:"/passthru"
 }
-service<http: Service> passthrough bind passthruEP {
+service<http:Service> passthrough bind passthruEP {
 
     @http:ResourceConfig {
         methods:["GET"],
@@ -42,7 +42,7 @@ service<http: Service> passthrough bind passthruEP {
 @http:ServiceConfig {
     basePath:"/hello"
 }
-service<http: Service> hello bind backendEP {
+service<http:Service> hello bind backendEP {
 
     @http:ResourceConfig {
         methods:["GET"],
