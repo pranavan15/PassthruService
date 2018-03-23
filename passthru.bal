@@ -1,14 +1,17 @@
 import ballerina/net.http;
 import ballerina/io;
 
+// Service endpoint for passthru service
 endpoint http:ServiceEndpoint passthruEP {
     port:9090
 };
 
+// Service endpoint for 'hello' backend service
 endpoint http:ServiceEndpoint backendEP {
     port:8080
 };
 
+// Client endpoint
 endpoint http:ClientEndpoint backendClientEP {
     targets:[{uri: "http://localhost:8080"}]
 };
@@ -23,9 +26,12 @@ service<http: Service> passthrough bind passthruEP {
         path:"/"
     }
     passthru (endpoint client, http:Request request) {
+        // Call the 'hello' backend and get the response
         var resp = backendClientEP -> forward("/hello", request);
+        // Deconstruct the tuple resp by matching its elements
         match resp {
             http:HttpConnectorError err => io:println("Error occured");
+            // Forward the response to the client
             http:Response response => {
                 _ = client -> forward(response);
             }
